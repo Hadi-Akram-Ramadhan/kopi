@@ -14,6 +14,7 @@ if (!$order) {
     exit();
 }
 
+
 // Ambil data menu
 $stmt = $pdo->query("SELECT * FROM menu WHERE status = 'tersedia' ORDER BY category, name");
 $menu_items = $stmt->fetchAll();
@@ -71,12 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Transaksi - Cafe Bisa Ngopi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -92,9 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="POST" class="mt-4">
             <div class="mb-3">
                 <label class="form-label">Nomor Meja</label>
-                <input type="number" name="table_number" class="form-control" value="<?php echo $order['table_number']; ?>" required>
+                <input type="number" name="table_number" class="form-control"
+                    value="<?php echo $order['table_number']; ?>" required>
             </div>
-            
+
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Menu</h5>
@@ -116,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <p class="text-muted"><?php echo ucfirst($item['category']); ?></p>
                                     <p class="fw-bold">Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></p>
                                     <input type="hidden" name="items[]" value="<?php echo $item['id']; ?>">
-                                    <input type="number" name="quantities[]" class="form-control" value="<?php echo $quantity; ?>" min="0">
+                                    <input type="number" name="quantities[]" class="form-control"
+                                        value="<?php echo $quantity; ?>" min="0">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
             </div>
-            
+
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             <a href="transactions.php" class="btn btn-secondary">Kembali</a>
         </form>
@@ -132,4 +137,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+
+</html>

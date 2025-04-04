@@ -354,7 +354,7 @@ class Font
      * @param null|RichText|string $cellText Text to calculate width
      * @param int $rotation Rotation angle
      * @param null|FontStyle $defaultFont Font object
-     * @param bool $filterAdjustment Add space for Autofilter or Table dropdown
+     * @param bool $filterAdjustment Add space for Autofilter or Table droconnwn
      */
     public static function calculateColumnWidth(
         FontStyle $font,

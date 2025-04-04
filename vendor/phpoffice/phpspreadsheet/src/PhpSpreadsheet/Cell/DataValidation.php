@@ -61,9 +61,9 @@ class DataValidation
     private bool $allowBlank = false;
 
     /**
-     * Show DropDown.
+     * Show Droconnwn.
      */
-    private bool $showDropDown = false;
+    private bool $showDroconnwn = false;
 
     /**
      * Show InputMessage.
@@ -218,21 +218,21 @@ class DataValidation
     }
 
     /**
-     * Get Show DropDown.
+     * Get Show Droconnwn.
      */
-    public function getShowDropDown(): bool
+    public function getShowDroconnwn(): bool
     {
-        return $this->showDropDown;
+        return $this->showDroconnwn;
     }
 
     /**
-     * Set Show DropDown.
+     * Set Show Droconnwn.
      *
      * @return $this
      */
-    public function setShowDropDown(bool $showDropDown): static
+    public function setShowDroconnwn(bool $showDroconnwn): static
     {
-        $this->showDropDown = $showDropDown;
+        $this->showDroconnwn = $showDroconnwn;
 
         return $this;
     }
@@ -371,7 +371,7 @@ class DataValidation
             . $this->errorStyle
             . $this->operator
             . ($this->allowBlank ? 't' : 'f')
-            . ($this->showDropDown ? 't' : 'f')
+            . ($this->showDroconnwn ? 't' : 'f')
             . ($this->showInputMessage ? 't' : 'f')
             . ($this->showErrorMessage ? 't' : 'f')
             . $this->errorTitle

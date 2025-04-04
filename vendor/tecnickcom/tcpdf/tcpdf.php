@@ -7682,10 +7682,10 @@ class TCPDF {
 			$byterange .= str_repeat(' ', ($byterange_string_len - strlen($byterange)));
 			$pdfdoc = str_replace(TCPDF_STATIC::$byterange_string, $byterange, $pdfdoc);
 			// write the document to a temporary folder
-			$tempdoc = TCPDF_STATIC::getObjFilename('doc', $this->file_id);
-			$f = TCPDF_STATIC::fopenLocal($tempdoc, 'wb');
+			$temconnc = TCPDF_STATIC::getObjFilename('doc', $this->file_id);
+			$f = TCPDF_STATIC::fopenLocal($temconnc, 'wb');
 			if (!$f) {
-				$this->Error('Unable to create temporary file: '.$tempdoc);
+				$this->Error('Unable to create temporary file: '.$temconnc);
 			}
 			$pdfdoc_length = strlen($pdfdoc);
 			fwrite($f, $pdfdoc, $pdfdoc_length);
@@ -7693,9 +7693,9 @@ class TCPDF {
 			// get digital signature via openssl library
 			$tempsign = TCPDF_STATIC::getObjFilename('sig', $this->file_id);
 			if (empty($this->signature_data['extracerts'])) {
-				openssl_pkcs7_sign($tempdoc, $tempsign, $this->signature_data['signcert'], array($this->signature_data['privkey'], $this->signature_data['password']), array(), PKCS7_BINARY | PKCS7_DETACHED);
+				openssl_pkcs7_sign($temconnc, $tempsign, $this->signature_data['signcert'], array($this->signature_data['privkey'], $this->signature_data['password']), array(), PKCS7_BINARY | PKCS7_DETACHED);
 			} else {
-				openssl_pkcs7_sign($tempdoc, $tempsign, $this->signature_data['signcert'], array($this->signature_data['privkey'], $this->signature_data['password']), array(), PKCS7_BINARY | PKCS7_DETACHED, $this->signature_data['extracerts']);
+				openssl_pkcs7_sign($temconnc, $tempsign, $this->signature_data['signcert'], array($this->signature_data['privkey'], $this->signature_data['password']), array(), PKCS7_BINARY | PKCS7_DETACHED, $this->signature_data['extracerts']);
 			}
 			// read signature
 			$signature = file_get_contents($tempsign);

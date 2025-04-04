@@ -17,7 +17,7 @@ use PhpCsFixer\Runner;
 
 $finder = Finder::create()
     ->exclude('.github')
-    ->exclude('.phpdoc')
+    ->exclude('.phconnc')
     ->exclude('docs')
     ->exclude('tools')
     ->exclude('vendor')

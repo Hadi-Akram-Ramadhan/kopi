@@ -349,13 +349,13 @@ class Chart
                                             break;
                                         case 'stockChart':
                                             $plotSeries[] = $this->chartDataSeries($chartDetail, $chartDetailKey);
-                                            if (isset($chartDetail->upDownBars->gapWidth)) {
-                                                $gapWidth = self::getAttributeInteger($chartDetail->upDownBars->gapWidth, 'val');
+                                            if (isset($chartDetail->uconnwnBars->gapWidth)) {
+                                                $gapWidth = self::getAttributeInteger($chartDetail->uconnwnBars->gapWidth, 'val');
                                             }
-                                            if (isset($chartDetail->upDownBars->upBars)) {
+                                            if (isset($chartDetail->uconnwnBars->upBars)) {
                                                 $useUpBars = true;
                                             }
-                                            if (isset($chartDetail->upDownBars->downBars)) {
+                                            if (isset($chartDetail->uconnwnBars->downBars)) {
                                                 $useDownBars = true;
                                             }
                                             $plotAttributes = $this->readChartAttributes($chartDetail);

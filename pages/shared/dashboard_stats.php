@@ -70,6 +70,7 @@ $category_sales = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,10 +78,12 @@ $category_sales = $stmt->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../<?php echo $_SESSION['role']; ?>/dashboard.php">Cafe Bisa Ngopi - <?php echo ucfirst($_SESSION['role']); ?></a>
+            <a class="navbar-brand" href="../<?php echo $_SESSION['role']; ?>/dashboard.php">Cafe Bisa Ngopi -
+                <?php echo ucfirst($_SESSION['role']); ?></a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="../../auth/logout.php">Logout</a>
             </div>
@@ -89,7 +92,7 @@ $category_sales = $stmt->fetchAll();
 
     <div class="container mt-4">
         <h2>Dashboard</h2>
-        
+
         <!-- Filter Form -->
         <div class="card mb-4">
             <div class="card-body">
@@ -109,7 +112,7 @@ $category_sales = $stmt->fetchAll();
                 </form>
             </div>
         </div>
-        
+
         <!-- Statistik -->
         <div class="row mb-4">
             <div class="col-md-3">
@@ -145,7 +148,7 @@ $category_sales = $stmt->fetchAll();
                 </div>
             </div>
         </div>
-        
+
         <!-- Grafik -->
         <div class="row">
             <div class="col-md-8">
@@ -165,56 +168,57 @@ $category_sales = $stmt->fetchAll();
                 </div>
             </div>
         </div>
-        
+
         <a href="../<?php echo $_SESSION['role']; ?>/dashboard.php" class="btn btn-secondary">Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Grafik Penjualan Harian
-        const dailyCtx = document.getElementById('dailySalesChart').getContext('2d');
-        new Chart(dailyCtx, {
-            type: 'line',
-            data: {
-                labels: <?php echo json_encode(array_column($daily_sales, 'date')); ?>,
-                datasets: [{
-                    label: 'Total Penjualan',
-                    data: <?php echo json_encode(array_column($daily_sales, 'total_sales')); ?>,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    // Grafik Penjualan Harian
+    const dailyCtx = document.getElementById('dailySalesChart').getContext('2d');
+    new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+            labels: <?php echo json_encode(array_column($daily_sales, 'date')); ?>,
+            datasets: [{
+                label: 'Total Penjualan',
+                data: <?php echo json_encode(array_column($daily_sales, 'total_sales')); ?>,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-        
-        // Grafik Penjualan per Kategori
-        const categoryCtx = document.getElementById('categorySalesChart').getContext('2d');
-        new Chart(categoryCtx, {
-            type: 'pie',
-            data: {
-                labels: <?php echo json_encode(array_column($category_sales, 'category')); ?>,
-                datasets: [{
-                    data: <?php echo json_encode(array_column($category_sales, 'total_sales')); ?>,
-                    backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
+        }
+    });
+
+    // Grafik Penjualan per Kategori
+    const categoryCtx = document.getElementById('categorySalesChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'pie',
+        data: {
+            labels: <?php echo json_encode(array_column($category_sales, 'category')); ?>,
+            datasets: [{
+                data: <?php echo json_encode(array_column($category_sales, 'total_sales')); ?>,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
     </script>
 </body>
-</html> 
+
+</html>

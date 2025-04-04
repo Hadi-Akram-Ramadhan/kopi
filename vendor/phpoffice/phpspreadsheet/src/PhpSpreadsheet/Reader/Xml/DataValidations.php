@@ -47,10 +47,10 @@ class DataValidations
             $validation = new DataValidation();
 
             // set defaults
-            $validation->setShowDropDown(true);
+            $validation->setShowDroconnwn(true);
             $validation->setShowInputMessage(true);
             $validation->setShowErrorMessage(true);
-            $validation->setShowDropDown(true);
+            $validation->setShowDroconnwn(true);
             $this->thisRow = 1;
             $this->thisColumn = 1;
 
@@ -146,7 +146,7 @@ class DataValidations
 
                         break;
                     case 'ComboHide':
-                        $validation->setShowDropDown(false);
+                        $validation->setShowDroconnwn(false);
 
                         break;
                     case 'UseBlank':

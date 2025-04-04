@@ -2662,7 +2662,7 @@ class Worksheet extends BIFFwriter
                 $options |= $dataValidation->getAllowBlank() << 8;
 
                 // show drop down
-                $options |= (!$dataValidation->getShowDropDown()) << 9;
+                $options |= (!$dataValidation->getShowDroconnwn()) << 9;
 
                 // show input message
                 $options |= $dataValidation->getShowInputMessage() << 18;

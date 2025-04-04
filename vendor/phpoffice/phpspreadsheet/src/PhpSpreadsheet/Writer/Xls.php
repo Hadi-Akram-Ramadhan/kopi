@@ -318,7 +318,7 @@ class Xls extends BaseWriter
                 while ($iInc <= $iNumColEnd) {
                     ++$countShapes[$sheetIndex];
 
-                    // create an Drawing Object for the dropdown
+                    // create an Drawing Object for the droconnwn
                     $oDrawing = new BaseDrawing();
                     // get the coordinates of drawing
                     $cDrawing = Coordinate::stringFromColumnIndex($iInc) . $rangeBounds[0][1];

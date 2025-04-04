@@ -58,6 +58,7 @@ $cashier_sales = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,6 +66,7 @@ $cashier_sales = $stmt->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -77,7 +79,7 @@ $cashier_sales = $stmt->fetchAll();
 
     <div class="container mt-4">
         <h2>Laporan Penjualan</h2>
-        
+
         <!-- Filter Form -->
         <div class="card mb-4">
             <div class="card-body">
@@ -97,7 +99,7 @@ $cashier_sales = $stmt->fetchAll();
                 </form>
             </div>
         </div>
-        
+
         <!-- Grafik Penjualan Harian -->
         <div class="card mb-4">
             <div class="card-body">
@@ -105,7 +107,7 @@ $cashier_sales = $stmt->fetchAll();
                 <canvas id="dailySalesChart"></canvas>
             </div>
         </div>
-        
+
         <!-- Tabel Penjualan per Menu -->
         <div class="card mb-4">
             <div class="card-body">
@@ -136,7 +138,7 @@ $cashier_sales = $stmt->fetchAll();
                 </div>
             </div>
         </div>
-        
+
         <!-- Tabel Penjualan per Kasir -->
         <div class="card mb-4">
             <div class="card-body">
@@ -163,34 +165,35 @@ $cashier_sales = $stmt->fetchAll();
                 </div>
             </div>
         </div>
-        
+
         <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Grafik Penjualan Harian
-        const ctx = document.getElementById('dailySalesChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: <?php echo json_encode(array_column($daily_sales, 'date')); ?>,
-                datasets: [{
-                    label: 'Total Penjualan',
-                    data: <?php echo json_encode(array_column($daily_sales, 'total_sales')); ?>,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    // Grafik Penjualan Harian
+    const ctx = document.getElementById('dailySalesChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: <?php echo json_encode(array_column($daily_sales, 'date')); ?>,
+            datasets: [{
+                label: 'Total Penjualan',
+                data: <?php echo json_encode(array_column($daily_sales, 'total_sales')); ?>,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
+        }
+    });
     </script>
 </body>
-</html> 
+
+</html>

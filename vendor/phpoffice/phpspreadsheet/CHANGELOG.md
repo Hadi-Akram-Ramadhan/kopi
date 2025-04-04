@@ -510,7 +510,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - Xlsx Color schemes read in will be written out (previously Excel 2007-2010 Color scheme was always written); manipulation of those schemes before write, including restoring prior behavior, is provided [PR #3476](https://github.com/PHPOffice/PhpSpreadsheet/pull/3476)
 - Memory and speed optimisations for Read Filters with Xlsx Files and Shared Formulae. [PR #3474](https://github.com/PHPOffice/PhpSpreadsheet/pull/3474)
 - Allow `CellRange` and `CellAddress` objects for the `range` argument in the `rangeToArray()` method. [PR #3494](https://github.com/PHPOffice/PhpSpreadsheet/pull/3494)
-- Stock charts will now read and reproduce `upDownBars` and subsidiary tags; these were previously ignored on read and hard-coded on write. [PR #3515](https://github.com/PHPOffice/PhpSpreadsheet/pull/3515)
+- Stock charts will now read and reproduce `uconnwnBars` and subsidiary tags; these were previously ignored on read and hard-coded on write. [PR #3515](https://github.com/PHPOffice/PhpSpreadsheet/pull/3515)
 
 ### Deprecated
 
@@ -586,7 +586,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - Calculation Engine doesn't evaluate Defined Name when default cell A1 is quote-prefixed [Issue #3335](https://github.com/PHPOffice/PhpSpreadsheet/issues/3335) [PR #3336](https://github.com/PHPOffice/PhpSpreadsheet/pull/3336)
 - XLSX Writer - Array Formulas do not include function prefix [Issue #3337](https://github.com/PHPOffice/PhpSpreadsheet/issues/3337) [PR #3338](https://github.com/PHPOffice/PhpSpreadsheet/pull/3338)
 - Permit Max Column for Row Breaks [Issue #3143](https://github.com/PHPOffice/PhpSpreadsheet/issues/3143) [PR #3345](https://github.com/PHPOffice/PhpSpreadsheet/pull/3345)
-- AutoSize Columns should allow for dropdown icon when AutoFilter is for a Table [Issue #3356](https://github.com/PHPOffice/PhpSpreadsheet/issues/3356) [PR #3358](https://github.com/PHPOffice/PhpSpreadsheet/pull/3358) and for Center Alignment of Headers [Issue #3395](https://github.com/PHPOffice/PhpSpreadsheet/issues/3395) [PR #3399](https://github.com/PHPOffice/PhpSpreadsheet/pull/3399)
+- AutoSize Columns should allow for droconnwn icon when AutoFilter is for a Table [Issue #3356](https://github.com/PHPOffice/PhpSpreadsheet/issues/3356) [PR #3358](https://github.com/PHPOffice/PhpSpreadsheet/pull/3358) and for Center Alignment of Headers [Issue #3395](https://github.com/PHPOffice/PhpSpreadsheet/issues/3395) [PR #3399](https://github.com/PHPOffice/PhpSpreadsheet/pull/3399)
 - Decimal Precision for Scientific Number Format Mask [Issue #3381](https://github.com/PHPOffice/PhpSpreadsheet/issues/3381) [PR #3382](https://github.com/PHPOffice/PhpSpreadsheet/pull/3382)
 - Xls Writer Parser Handle Boolean Literals as Function Arguments [Issue #3369](https://github.com/PHPOffice/PhpSpreadsheet/issues/3369) [PR #3391](https://github.com/PHPOffice/PhpSpreadsheet/pull/3391)
 - Conditional Formatting Improvements for Xlsx [Issue #3370](https://github.com/PHPOffice/PhpSpreadsheet/issues/3370) [Issue #3202](https://github.com/PHPOffice/PhpSpreadsheet/issues/3302) [PR #3372](https://github.com/PHPOffice/PhpSpreadsheet/pull/3372)
@@ -925,7 +925,7 @@ Note that this will be the last 1.x branch release before the 2.x release. We wi
 
 ### Fixed
 
-- Make allowance for the AutoFilter dropdown icon in the first row of an Autofilter range when using Autosize columns. [Issue #2413](https://github.com/PHPOffice/PhpSpreadsheet/issues/2413) [PR #2754](https://github.com/PHPOffice/PhpSpreadsheet/pull/2754)
+- Make allowance for the AutoFilter droconnwn icon in the first row of an Autofilter range when using Autosize columns. [Issue #2413](https://github.com/PHPOffice/PhpSpreadsheet/issues/2413) [PR #2754](https://github.com/PHPOffice/PhpSpreadsheet/pull/2754)
 - Support for "chained" ranges (e.g. `A5:C10:C20:F1`) in the Calculation Engine; and also support for using named ranges with the Range operator (e.g. `NamedRange1:NamedRange2`) [Issue #2730](https://github.com/PHPOffice/PhpSpreadsheet/issues/2730) [PR #2746](https://github.com/PHPOffice/PhpSpreadsheet/pull/2746)
 - Update Conditional Formatting ranges and rule conditions when inserting/deleting rows/columns [Issue #2678](https://github.com/PHPOffice/PhpSpreadsheet/issues/2678) [PR #2689](https://github.com/PHPOffice/PhpSpreadsheet/pull/2689)
 - Allow `INDIRECT()` to accept row/column ranges as well as cell ranges [PR #2687](https://github.com/PHPOffice/PhpSpreadsheet/pull/2687)
@@ -1449,7 +1449,7 @@ Note that this will be the last 1.x branch release before the 2.x release. We wi
 - Fix for Xls writer wrong selected cells and active sheet [#1256](https://github.com/PHPOffice/PhpSpreadsheet/pull/1256)
 - Fix active cell when freeze pane is used [#1323](https://github.com/PHPOffice/PhpSpreadsheet/pull/1323)
 - Fix XLSX file loading with autofilter containing '$' [#1326](https://github.com/PHPOffice/PhpSpreadsheet/pull/1326)
-- PHPDoc - Use `@return $this` for fluent methods [#1362](https://github.com/PHPOffice/PhpSpreadsheet/pull/1362)
+- PHconnc - Use `@return $this` for fluent methods [#1362](https://github.com/PHPOffice/PhpSpreadsheet/pull/1362)
 
 ## 1.10.1 - 2019-12-02
 

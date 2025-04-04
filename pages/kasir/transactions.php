@@ -18,12 +18,14 @@ $transactions = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Transaksi - Cafe Bisa Ngopi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -36,13 +38,13 @@ $transactions = $stmt->fetchAll();
 
     <div class="container mt-4">
         <h2>Riwayat Transaksi</h2>
-        
+
         <?php if (isset($_GET['success'])): ?>
         <div class="alert alert-success">
             Transaksi berhasil dibuat!
         </div>
         <?php endif; ?>
-        
+
         <div class="table-responsive mt-4">
             <table class="table table-striped">
                 <thead>
@@ -71,18 +73,19 @@ $transactions = $stmt->fetchAll();
                         </td>
                         <td><?php echo date('d/m/Y H:i', strtotime($transaction['created_at'])); ?></td>
                         <td>
-                            <a href="view_transaction.php?id=<?php echo $transaction['id']; ?>" 
-                               class="btn btn-sm btn-info">Detail</a>
+                            <a href="view_transaction.php?id=<?php echo $transaction['id']; ?>"
+                                class="btn btn-sm btn-info">Detail</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-        
+
         <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+
+</html>

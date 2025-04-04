@@ -96,7 +96,7 @@ class DataValidationHelper extends Xls
         $allowBlank = (0x00000100 & $options) >> 8;
 
         // bit: 9; mask: 0x00000200; 1= suppress drop down arrow in list type validity
-        $suppressDropDown = (0x00000200 & $options) >> 9;
+        $suppressDroconnwn = (0x00000200 & $options) >> 9;
 
         // bit: 18; mask: 0x00040000; 1= show prompt box if cell selected
         $showInputMessage = (0x00040000 & $options) >> 18;
@@ -204,7 +204,7 @@ class DataValidationHelper extends Xls
             $objValidation->setAllowBlank((bool) $allowBlank);
             $objValidation->setShowInputMessage((bool) $showInputMessage);
             $objValidation->setShowErrorMessage((bool) $showErrorMessage);
-            $objValidation->setShowDropDown(!$suppressDropDown);
+            $objValidation->setShowDroconnwn(!$suppressDroconnwn);
             $objValidation->setOperator($operator);
             $objValidation->setErrorTitle($errorTitle);
             $objValidation->setError($error);

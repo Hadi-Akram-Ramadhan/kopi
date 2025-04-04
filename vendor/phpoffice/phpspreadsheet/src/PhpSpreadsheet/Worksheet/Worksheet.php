@@ -723,7 +723,7 @@ class Worksheet
                     // Determine width if cell is not part of a merge or does and is a value cell of 1-column wide range
                     if (!$isMerged || $isMergedButProceed) {
                         // Determine if we need to make an adjustment for the first row in an AutoFilter range that
-                        //    has a column filter dropdown
+                        //    has a column filter droconnwn
                         $filterAdjustment = false;
                         if (!empty($autoFilterIndentRanges)) {
                             foreach ($autoFilterIndentRanges as $autoFilterFirstRowRange) {

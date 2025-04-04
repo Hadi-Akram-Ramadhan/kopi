@@ -40,12 +40,14 @@ $items = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Transaksi - Cafe Bisa Ngopi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -58,29 +60,31 @@ $items = $stmt->fetchAll();
 
     <div class="container mt-4">
         <h2>Detail Transaksi</h2>
-        
+
         <!-- Info Transaksi -->
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>ID Transaksi:</strong> <?php echo $order['id']; ?></p>
-                        <p><strong>Tanggal:</strong> <?php echo date('d/m/Y H:i', strtotime($order['created_at'])); ?></p>
+                        <p><strong>Tanggal:</strong> <?php echo date('d/m/Y H:i', strtotime($order['created_at'])); ?>
+                        </p>
                         <p><strong>Kasir:</strong> <?php echo htmlspecialchars($order['cashier_name']); ?></p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>Nomor Meja:</strong> <?php echo $order['table_number']; ?></p>
-                        <p><strong>Status:</strong> 
+                        <p><strong>Status:</strong>
                             <span class="badge bg-<?php echo $order['status'] == 'selesai' ? 'success' : 'warning'; ?>">
                                 <?php echo ucfirst($order['status']); ?>
                             </span>
                         </p>
-                        <p><strong>Total:</strong> Rp <?php echo number_format($order['total_amount'], 0, ',', '.'); ?></p>
+                        <p><strong>Total:</strong> Rp <?php echo number_format($order['total_amount'], 0, ',', '.'); ?>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Detail Item -->
         <div class="card">
             <div class="card-body">
@@ -103,7 +107,8 @@ $items = $stmt->fetchAll();
                                 <td><?php echo ucfirst($item['category']); ?></td>
                                 <td>Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></td>
                                 <td><?php echo $item['quantity']; ?></td>
-                                <td>Rp <?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?></td>
+                                <td>Rp <?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -111,18 +116,18 @@ $items = $stmt->fetchAll();
                 </div>
             </div>
         </div>
-        
+
         <div class="mt-3">
             <a href="transactions.php" class="btn btn-secondary">Kembali</a>
             <?php if ($order['status'] == 'pending'): ?>
             <a href="edit_transaction.php?id=<?php echo $order['id']; ?>" class="btn btn-warning">Edit</a>
-            <a href="transactions.php?delete=<?php echo $order['id']; ?>" 
-               class="btn btn-danger"
-               onclick="return confirm('Yakin ingin menghapus transaksi ini?')">Hapus</a>
+            <a href="transactions.php?delete=<?php echo $order['id']; ?>" class="btn btn-danger"
+                onclick="return confirm('Yakin ingin menghapus transaksi ini?')">Hapus</a>
             <?php endif; ?>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+
+</html>

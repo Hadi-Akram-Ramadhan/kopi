@@ -43,9 +43,7 @@ $result = $stmt->get_result();
                 <i class="bi bi-arrow-left"></i> Kembali
             </button>
             <span class="navbar-brand mx-auto">Log Aktivitas</span>
-            <a class="btn btn-outline-light" href="../auth/logout.php">
-                <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
+
         </div>
     </nav>
 

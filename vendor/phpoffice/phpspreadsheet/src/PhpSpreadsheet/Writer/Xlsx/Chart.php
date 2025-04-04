@@ -389,7 +389,7 @@ class Chart extends WriterPart
                 $upBars = $plotArea->getUseUpBars();
                 $downBars = $plotArea->getUseDownBars();
                 if ($gapWidth !== null || $upBars || $downBars) {
-                    $objWriter->startElement('c:upDownBars');
+                    $objWriter->startElement('c:uconnwnBars');
                     if ($gapWidth !== null) {
                         $objWriter->startElement('c:gapWidth');
                         $objWriter->writeAttribute('val', "$gapWidth");
@@ -403,7 +403,7 @@ class Chart extends WriterPart
                         $objWriter->startElement('c:downBars');
                         $objWriter->endElement();
                     }
-                    $objWriter->endElement(); // c:upDownBars
+                    $objWriter->endElement(); // c:uconnwnBars
                 }
             }
 

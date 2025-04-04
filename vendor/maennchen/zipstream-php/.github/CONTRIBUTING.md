@@ -109,7 +109,7 @@ Install ZipStream-PHP's dependencies using [Composer](https://getcomposer.org/):
 
 ```bash
 $ composer install
-$ composer run install:tools # Install phpDocumentor using phive
+$ composer run install:tools # Install phconncumentor using phive
 ```
 
 ## Running ZipStream-PHP's test suite

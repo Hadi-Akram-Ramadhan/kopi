@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpdocumentor
+<phconncumentor
         configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="https://www.phpdoc.org"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
+        xmlns="https://www.phconnc.org"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phconncumentor/phconncumentor/master/data/xsd/phconnc.xsd"
 >
     <title>💾 ZipStream-PHP</title>
     <paths>
@@ -36,4 +36,4 @@
     </version>
     <setting name="guides.enabled" value="true"/>
     <template name="default" />
-</phpdocumentor>
+</phconncumentor>

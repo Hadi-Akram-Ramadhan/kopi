@@ -13,4 +13,4 @@ function checkRole($allowed_roles) {
         exit();
     }
 }
-?> 
+?>
