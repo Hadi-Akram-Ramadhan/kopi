@@ -1,5 +1,5 @@
 {
-    "name": "cafe-system",
+    "name": "hadiakram/kopi",
     "description": "Sistem manajemen cafe sederhana dengan PHP native",
     "type": "project",
     "require": {
@@ -13,8 +13,8 @@
         }
     },
     "authors": [{
-        "name": "Your Name",
-        "email": "your.email@example.com"
+        "name": "Hadi Akram Ramadhan",
+        "email": "kk.hadi.akram@gmail.com"
     }],
     "minimum-stability": "stable",
     "license": "MIT"
