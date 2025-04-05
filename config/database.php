@@ -1,23 +1,28 @@
 <?php
-// Database configuration
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'cafe_db';
+// Konfigurasi database
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'cafe_db';
 
-// Create mysqli connection
-$conn = new mysqli($host, $username, $password, $database);
+// Buat koneksi mysqli
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// Check mysqli connection
+// Cek koneksi
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Create PDO connection
+// Set charset ke utf8
+$conn->set_charset("utf8");
+
+// Buat koneksi PDO
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8";
+    $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    die("Koneksi PDO gagal: " . $e->getMessage());
 }
 ?>

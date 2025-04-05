@@ -1,6 +1,21 @@
 {
+    "name": "cafe-system",
+    "description": "Sistem manajemen cafe sederhana dengan PHP native",
+    "type": "project",
     "require": {
-        "tecnickcom/tcpdf": "^6.9",
-        "phpoffice/phpspreadsheet": "^4.1"
-    }
+        "php": ">=7.4",
+        "tecnickcom/tcpdf": "^6.6",
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "autoload": {
+        "psr-4": {
+            "CafeSystem\\": "src/"
+        }
+    },
+    "authors": [{
+        "name": "Your Name",
+        "email": "your.email@example.com"
+    }],
+    "minimum-stability": "stable",
+    "license": "MIT"
 }

@@ -18,10 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Hitung total
     foreach ($items as $key => $menu_id) {
         if ($quantities[$key] > 0) {
-            $stmt = $pdo->prepare("SELECT price FROM menu WHERE id = ?");
+            $stmt = $pdo->prepare("SELECT price, status FROM menu WHERE id = ?");
             $stmt->execute([$menu_id]);
-            $price = $stmt->fetch()['price'];
-            $total_amount += $price * $quantities[$key];
+            $menu = $stmt->fetch();
+            
+            if ($menu['status'] == 'tidak_tersedia') {
+                header('Location: new_order.php?error=1');
+                exit();
+            }
+            
+            $total_amount += $menu['price'] * $quantities[$key];
         }
     }
     
@@ -73,6 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container mt-4">
         <h2>Transaksi Baru</h2>
+
+        <?php if (isset($_GET['error'])): ?>
+        <div class="alert alert-danger">
+            Maaf, ada menu yang tidak tersedia. Silakan cek kembali pesanan kamu.
+        </div>
+        <?php endif; ?>
+
         <form method="POST" class="mt-4">
             <div class="mb-3">
                 <label class="form-label">Nomor Meja</label>
@@ -91,7 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <p class="text-muted"><?php echo ucfirst($item['category']); ?></p>
                                     <p class="fw-bold">Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></p>
                                     <input type="hidden" name="items[]" value="<?php echo $item['id']; ?>">
-                                    <input type="number" name="quantities[]" class="form-control" value="0" min="0">
+                                    <input type="number" name="quantities[]" class="form-control" value="0" min="0"
+                                        <?php echo $item['status'] == 'tidak_tersedia' ? 'disabled' : ''; ?>>
+                                    <?php if ($item['status'] == 'tidak_tersedia'): ?>
+                                    <small class="text-danger">Menu tidak tersedia</small>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

@@ -74,7 +74,8 @@ $items = $stmt->fetchAll();
                     <div class="col-md-6">
                         <p><strong>Nomor Meja:</strong> <?php echo $order['table_number']; ?></p>
                         <p><strong>Status:</strong>
-                            <span class="badge bg-<?php echo $order['status'] == 'selesai' ? 'success' : 'warning'; ?>">
+                            <span
+                                class="badge bg-<?php echo $order['status'] == 'completed' ? 'success' : 'warning'; ?>">
                                 <?php echo ucfirst($order['status']); ?>
                             </span>
                         </p>
@@ -120,6 +121,7 @@ $items = $stmt->fetchAll();
         <div class="mt-3">
             <a href="transactions.php" class="btn btn-secondary">Kembali</a>
             <?php if ($order['status'] == 'pending'): ?>
+            <a href="complete_transaction.php?id=<?php echo $order['id']; ?>" class="btn btn-success">Selesai</a>
             <a href="edit_transaction.php?id=<?php echo $order['id']; ?>" class="btn btn-warning">Edit</a>
             <a href="transactions.php?delete=<?php echo $order['id']; ?>" class="btn btn-danger"
                 onclick="return confirm('Yakin ingin menghapus transaksi ini?')">Hapus</a>

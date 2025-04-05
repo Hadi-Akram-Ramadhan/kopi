@@ -1,30 +1,43 @@
 <?php
 session_start();
 
-// Cek apakah user sudah login
-function isLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-// Cek role user
+// Function buat cek role
 function checkRole($allowed_roles) {
-    if (!isLoggedIn()) {
-        header('Location: /kopi/auth/login.php');
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
+        header('Location: ../login.php');
         exit();
     }
 
     if (!in_array($_SESSION['role'], $allowed_roles)) {
-        header('Location: /kopi/auth/login.php');
+        header('Location: ../unauthorized.php');
         exit();
     }
 }
 
-// Log aktivitas user
+// Function buat cek login
+function isLoggedIn() {
+    return isset($_SESSION['user_id']) && isset($_SESSION['role']);
+}
+
+// Function buat cek role spesifik
+function hasRole($role) {
+    return isset($_SESSION['role']) && $_SESSION['role'] === $role;
+}
+
+// Function buat log aktivitas
 function logActivity($conn, $activity) {
-    if (isLoggedIn()) {
-        $user_id = $_SESSION['user_id'];
-        $stmt = $conn->prepare("INSERT INTO activity_logs (user_id, activity) VALUES (?, ?)");
-        $stmt->bind_param("is", $user_id, $activity);
+    if (isset($_SESSION['user_id'])) {
+        $query = "INSERT INTO activity_logs (user_id, activity) VALUES (?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("is", $_SESSION['user_id'], $activity);
         $stmt->execute();
     }
+}
+
+// Function buat kirim notifikasi
+function sendNotification($conn, $user_id, $message) {
+    $query = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("is", $user_id, $message);
+    $stmt->execute();
 } 

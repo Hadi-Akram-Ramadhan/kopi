@@ -3,7 +3,7 @@ require_once '../../includes/auth_check.php';
 checkRole(['manajer']);
 
 require_once '../../config/database.php';
-require_once '../../vendor/autoload.php'; // Pastikan sudah install PhpSpreadsheet via composer
+require_once '../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -59,7 +59,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$start_date, $end_date]);
 $cashier_sales = $stmt->fetchAll();
 
-// Buat spreadsheet
+// Buat spreadsheet baru
 $spreadsheet = new Spreadsheet();
 
 // Set document properties
@@ -68,24 +68,19 @@ $spreadsheet->getProperties()
     ->setLastModifiedBy('Cafe Bisa Ngopi')
     ->setTitle('Laporan Penjualan')
     ->setSubject('Laporan Penjualan Cafe Bisa Ngopi')
-    ->setDescription('Laporan Penjualan Cafe Bisa Ngopi periode ' . date('d/m/Y', strtotime($start_date)) . ' - ' . date('d/m/Y', strtotime($end_date)));
+    ->setDescription('Laporan Penjualan Cafe Bisa Ngopi dari ' . $start_date . ' sampai ' . $end_date);
 
 // Penjualan Harian
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->setTitle('Penjualan Harian');
 
-$sheet->setCellValue('A1', 'Laporan Penjualan Cafe Bisa Ngopi');
-$sheet->setCellValue('A2', 'Periode: ' . date('d/m/Y', strtotime($start_date)) . ' - ' . date('d/m/Y', strtotime($end_date)));
-$sheet->mergeCells('A1:C1');
-$sheet->mergeCells('A2:C2');
+$sheet->setCellValue('A1', 'Tanggal');
+$sheet->setCellValue('B1', 'Total Transaksi');
+$sheet->setCellValue('C1', 'Total Penjualan');
 
-$sheet->setCellValue('A4', 'Tanggal');
-$sheet->setCellValue('B4', 'Total Transaksi');
-$sheet->setCellValue('C4', 'Total Penjualan');
-
-$row = 5;
+$row = 2;
 foreach ($daily_sales as $sale) {
-    $sheet->setCellValue('A' . $row, date('d/m/Y', strtotime($sale['date'])));
+    $sheet->setCellValue('A' . $row, $sale['date']);
     $sheet->setCellValue('B' . $row, $sale['total_orders']);
     $sheet->setCellValue('C' . $row, $sale['total_sales']);
     $row++;
@@ -95,18 +90,13 @@ foreach ($daily_sales as $sale) {
 $sheet = $spreadsheet->createSheet();
 $sheet->setTitle('Penjualan per Menu');
 
-$sheet->setCellValue('A1', 'Laporan Penjualan Cafe Bisa Ngopi');
-$sheet->setCellValue('A2', 'Periode: ' . date('d/m/Y', strtotime($start_date)) . ' - ' . date('d/m/Y', strtotime($end_date)));
-$sheet->mergeCells('A1:E1');
-$sheet->mergeCells('A2:E2');
+$sheet->setCellValue('A1', 'Menu');
+$sheet->setCellValue('B1', 'Kategori');
+$sheet->setCellValue('C1', 'Total Pesanan');
+$sheet->setCellValue('D1', 'Total Quantity');
+$sheet->setCellValue('E1', 'Total Penjualan');
 
-$sheet->setCellValue('A4', 'Menu');
-$sheet->setCellValue('B4', 'Kategori');
-$sheet->setCellValue('C4', 'Total Order');
-$sheet->setCellValue('D4', 'Total Qty');
-$sheet->setCellValue('E4', 'Total Penjualan');
-
-$row = 5;
+$row = 2;
 foreach ($menu_sales as $menu) {
     $sheet->setCellValue('A' . $row, $menu['name']);
     $sheet->setCellValue('B' . $row, ucfirst($menu['category']));
@@ -120,16 +110,11 @@ foreach ($menu_sales as $menu) {
 $sheet = $spreadsheet->createSheet();
 $sheet->setTitle('Penjualan per Kasir');
 
-$sheet->setCellValue('A1', 'Laporan Penjualan Cafe Bisa Ngopi');
-$sheet->setCellValue('A2', 'Periode: ' . date('d/m/Y', strtotime($start_date)) . ' - ' . date('d/m/Y', strtotime($end_date)));
-$sheet->mergeCells('A1:C1');
-$sheet->mergeCells('A2:C2');
+$sheet->setCellValue('A1', 'Kasir');
+$sheet->setCellValue('B1', 'Total Transaksi');
+$sheet->setCellValue('C1', 'Total Penjualan');
 
-$sheet->setCellValue('A4', 'Kasir');
-$sheet->setCellValue('B4', 'Total Transaksi');
-$sheet->setCellValue('C4', 'Total Penjualan');
-
-$row = 5;
+$row = 2;
 foreach ($cashier_sales as $cashier) {
     $sheet->setCellValue('A' . $row, $cashier['username']);
     $sheet->setCellValue('B' . $row, $cashier['total_orders']);
@@ -137,10 +122,10 @@ foreach ($cashier_sales as $cashier) {
     $row++;
 }
 
-// Set active sheet
+// Set active sheet index to the first sheet
 $spreadsheet->setActiveSheetIndex(0);
 
-// Output Excel
+// Output Excel file
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="laporan_penjualan.xlsx"');
 header('Cache-Control: max-age=0');

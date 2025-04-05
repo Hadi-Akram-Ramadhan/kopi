@@ -45,6 +45,12 @@ $transactions = $stmt->fetchAll();
         </div>
         <?php endif; ?>
 
+        <?php if (isset($_GET['completed'])): ?>
+        <div class="alert alert-success">
+            Transaksi berhasil diselesaikan!
+        </div>
+        <?php endif; ?>
+
         <div class="table-responsive mt-4">
             <table class="table table-striped">
                 <thead>
@@ -66,15 +72,19 @@ $transactions = $stmt->fetchAll();
                         <td>
                             <span class="badge bg-<?php 
                                 echo $transaction['status'] == 'pending' ? 'warning' : 
-                                    ($transaction['status'] == 'paid' ? 'success' : 'info'); 
+                                    ($transaction['status'] == 'completed' ? 'success' : 'danger'); 
                             ?>">
                                 <?php echo ucfirst($transaction['status']); ?>
                             </span>
                         </td>
                         <td><?php echo date('d/m/Y H:i', strtotime($transaction['created_at'])); ?></td>
                         <td>
-                            <a href="view_transaction.php?id=<?php echo $transaction['id']; ?>"
+                            <a href="transaction_detail.php?id=<?php echo $transaction['id']; ?>"
                                 class="btn btn-sm btn-info">Detail</a>
+                            <?php if ($transaction['status'] == 'pending'): ?>
+                            <a href="complete_transaction.php?id=<?php echo $transaction['id']; ?>"
+                                class="btn btn-sm btn-success">Selesai</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

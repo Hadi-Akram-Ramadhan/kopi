@@ -16,7 +16,7 @@ if (!$order) {
 
 
 // Ambil data menu
-$stmt = $pdo->query("SELECT * FROM menu WHERE status = 'tersedia' ORDER BY category, name");
+$stmt = $pdo->query("SELECT * FROM menu ORDER BY category, name");
 $menu_items = $stmt->fetchAll();
 
 // Ambil data order items

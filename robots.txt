@@ -1,0 +1,12 @@
+# Disallow all robots
+User-agent: *
+Disallow: /
+
+# Allow specific paths
+Allow: /index.php
+Allow: /login.php
+Allow: /404.php
+Allow: /500.php
+
+# Sitemap
+Sitemap: https://example.com/sitemap.xml 
